@@ -7,8 +7,8 @@ const path = require('path')
 const userScheme = new Schema({ name: String, age: Number }, { versionKey: false })
 const User = mongoose.model('User', userScheme)
 const dbConfig = require('./db')
-// const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_URI
-// app.use(express.static(__dirname + '/public'))
+// const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_UR
+// app.use(express.static(__dirname + '/public'))ß
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
