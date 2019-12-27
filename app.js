@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const app = express()
 const jsonParser = express.json()
 const path = require('path')
-const userScheme = new Schema({ name: String, age: Number }, { versionKey: false })
+const userScheme = new Schema({ name: String, age: Number, city: String }, { versionKey: false })
 const User = mongoose.model('User', userScheme)
 const dbConfig = require('./db')
 // const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_UR
@@ -40,7 +40,8 @@ app.post('/api/users', jsonParser, function (req, res) {
 
   const userName = req.body.name
   const userAge = req.body.age
-  const user = new User({ name: userName, age: userAge })
+  const userCity = req.body.city
+  const user = new User({ name: userName, age: userAge, city: userCity })
 
   user.save(function (err) {
     if (err) return console.log(err)
@@ -62,7 +63,8 @@ app.put('/api/users', jsonParser, function (req, res) {
   const id = req.body.id
   const userName = req.body.name
   const userAge = req.body.age
-  const newUser = { age: userAge, name: userName }
+  const userCity = req.body.city
+  const newUser = { age: userAge, name: userName, city: userCity }
 
   User.findOneAndUpdate({ _id: id }, newUser, { new: true }, function (err, user) {
     if (err) return console.log(err)
